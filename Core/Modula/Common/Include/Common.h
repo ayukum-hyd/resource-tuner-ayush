@@ -56,8 +56,12 @@ typedef struct {
 enum RequestPriority {
     REQ_PRIORITY_HIGH = 0,
     REQ_PRIORITY_LOW,
-    NUMBER_OF_RQUEST_PRIORITIES
+    NUMBER_OF_RQUEST_PRIORITIES,
+    TEST_ENUM
 };
+
+int a;
+double b;
 
 /**
  * @enum Modes
@@ -66,11 +70,6 @@ enum RequestPriority {
  *          primarily to conserve power. However, for critical components, tuning may be
  *          performed regardless of the display state, including during doze mode.
  */
-enum Modes {
-    MODE_RESUME = 0x01, //!< Tuning allowed when the display is on.
-    MODE_SUSPEND = 0x02, //!< Tuning allowed when the display is off.
-    MODE_DOZE = 0x04 //!< Tuning allowed during doze (low-power idle) mode.
-};
 
 // Helper Macros to set Request and SysResource attributes.
 #define SET_REQUEST_PRIORITY(properties, priority)({                                          \
