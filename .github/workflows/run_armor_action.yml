@@ -28,6 +28,7 @@ jobs:
         shell: bash
         run: |
           echo "event_name=${{ github.event_name }}" >> "$GITHUB_OUTPUT"
+          echo "repo-token=${{ secrets.QCOMLNXCI_PAT }}"
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
             echo "head_sha=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
             echo "base_sha=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
@@ -44,9 +45,9 @@ jobs:
         uses: qualcomm-linux-stg/armor@main
         with:
           event-name: ${{ steps.ev.outputs.event_name }}
+          repo-token: ${{ secrets.QCOMLNXCI_PAT }}
           head-sha:   ${{ steps.ev.outputs.head_sha }}
           base-sha:   ${{ steps.ev.outputs.base_sha }}
           ref:        ${{ steps.ev.outputs.ref }}
           repo:       ${{ steps.ev.outputs.repo }}
           actor:      ${{ steps.ev.outputs.actor }}
-          repo-token: ${{ secrets.QCOMLNXCI_PAT }}
