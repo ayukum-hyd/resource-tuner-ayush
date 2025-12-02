@@ -36,6 +36,10 @@ jobs:
             echo "head_sha=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
             echo "base_sha=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
             echo "branch_name=${{ github.event.pull_request.base.ref }}" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "head_sha=${{ inputs.head-sha }}" >> "$GITHUB_OUTPUT"
+            echo "base_sha=${{ inputs.base-sha }}" >> "$GITHUB_OUTPUT"
+            echo "branch_name=${{ inputs.branch-name }}" >> "$GITHUB_OUTPUT"
           else
             # push
             echo "head_sha=${{ github.event.after }}" >> "$GITHUB_OUTPUT"
